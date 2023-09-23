@@ -2,5 +2,5 @@
 
 unsigned int XOR(unsigned int x, unsigned int y)
 {
-    //idk
+    return (x & ~y)+(~x & y);
 }
