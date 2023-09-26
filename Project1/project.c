@@ -1,10 +1,9 @@
-#include "project.h"
 #include <stdio.h>
-
+#include "project.h"
 
 void print_bits(unsigned int x)
 {
-    int i = 7;
+    int i = 31;
     int bit;
     while (i >= 0)
     {
@@ -36,6 +35,78 @@ int print_funcs(void)
             scanf("%u", &y);
             print_bits(NOR(x,y));
         }
+        else if (d == 2)
+        {
+            printf("x = ");
+            scanf("%u", &x);
+            printf("y = ");
+            scanf("%u", &y);
+            print_bits(XOR(x,y));
+        }
+        else if (d == 3)
+        {
+            printf("x = ");
+            scanf("%u", &x);
+            printf("y = ");
+            scanf("%u", &y);
+            printf("%u", isNotEqual(x, y));
+        }
+        else if (d == 4)
+        {
+            
+        }
+        else if (d == 5)
+        {
+            
+        }
+        else if (d == 6)
+        {
+            printf("x = ");
+            scanf("%u", &x);
+            printf("n = ");
+            scanf("%hhu", &n);
+            print_bits(logicalShift(x,n));
+        }
+        else if (d == 7)
+        {
+            printf("x = ");
+            scanf("%u", &x);
+            printf("%u", bitCount(x));
+        }
+        else if (d == 8)
+        {
+
+        }
+        else if (d == 9)
+        {
+
+        }
+        else if (d == 10)
+        {
+
+        }
+        else if (d == 11)
+        {
+
+        }
+        else if (d == 12)
+        {
+
+        }
+        else if (d == 13)
+        {
+
+        }
+        else if (d == 14)
+        {
+            printf("x = ");
+            scanf("%u", &x);
+            printf("%u", Abs(x));
+        }
+        else if (d == 15)
+        {
+
+        }
         return (1);
     }
     else if (d == 0)
@@ -45,7 +116,7 @@ int print_funcs(void)
     }
     else
     {
-        //invalid input try again
+        printf("Function out of bounds\n");
         return (1);
     }
 }

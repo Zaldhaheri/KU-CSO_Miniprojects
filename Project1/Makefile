@@ -4,7 +4,7 @@ CC = gcc
 CCFLAGS = -Wall -Werror -Wextra
 RM = cmd /C del
 
-SRCS = project.c NOR.c XOR.c isNotEqual.c getByte.c Abs.c\
+SRCS = project.c functions.c\
 
 OBJS = ${SRCS:.c=.o}
 
@@ -15,7 +15,7 @@ $(NAME) : $(OBJS)
 
 run :
 	$(CC) $(SRCS)
-	.\a.exe
+	./a.out
 
 clean :
 	$(RM) $(OBJS)
