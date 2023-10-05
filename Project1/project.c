@@ -109,15 +109,25 @@ int print_funcs(void)
         }
         else if (d == 11)
         {
-
+            printf("x = ");
+            scanf(" %u", &x);
+            printf("%d", isNonNegative(x));
         }
         else if (d == 12)
         {
-
+            printf("x = ");
+            scanf("%u", &x);
+            printf("y = ");
+            scanf("%u", &y);
+            printf("%u", isGreater(x, y));
         }
         else if (d == 13)
         {
-
+            printf("x = ");
+            scanf("%u", &x);
+            printf("n = ");
+            scanf("%hhu", &n);
+            printf("%d", DivPwr2(x, n));
         }
         else if (d == 14)
         {
@@ -127,7 +137,11 @@ int print_funcs(void)
         }
         else if (d == 15)
         {
-
+            printf("x = ");
+            scanf("%u", &x);
+            printf("y = ");
+            scanf("%u", &y);
+            printf("%u", addOk(x, y));
         }
         return (1);
     }
