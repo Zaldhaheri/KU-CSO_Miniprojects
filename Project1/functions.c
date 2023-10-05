@@ -12,20 +12,24 @@ unsigned int XOR(unsigned int x, unsigned int y)
 
 unsigned int isNotEqual(unsigned int x, unsigned int y)
 {
-    if(x ^ y)
-        return (1);
-    return (0);
+    return !!(x ^ y);
 }
 
-// unsigned char getByte(unsigned int x, unsigned char n)
-// {
-//     //idk
-// }
+unsigned char getByte(unsigned int x, unsigned char n)
+{
+    return (0b1111 & (x >> (n << 2)));
+}
 
-// unsigned int copyLSB(unsigned int x)
-// {
-//     //idk
-// }
+unsigned int copyLSB(unsigned int x)
+{
+    unsigned int LSB = 1 & x;
+    LSB |= (LSB << 16);
+    LSB |= (LSB << 8);
+    LSB |= (LSB << 4);
+    LSB |= (LSB << 2);
+    LSB |= (LSB << 1);
+    return LSB;
+}
 
 unsigned int logicalShift(unsigned int x, unsigned char n)
 {
@@ -45,40 +49,52 @@ unsigned int bitCount(unsigned int x)
     return (count);
 }
 
-// unsigned int Bang(unsigned int x)
-// {
+unsigned int Bang(unsigned int x)
+{
+    return (~x & 1);
+}
 
-// }
+unsigned int LeastBitPos(unsigned int x)
+{
+    unsigned int i;
+    if (!x)
+    {
+        return (0);
+    }
+    for(i = 0; i < 32; i++)
+    {
+        if ((1 << i) & x)
+        {
+            return ((1 << i) & x);
+        }
+    }
+}
 
-// unsigned int LeastBitPos(unsigned int x)
-// {
+unsigned int Tmax(void)
+{
+    return (2147483647);
+}
 
-// }
+unsigned int isNonNegative(unsigned int x)
+{
 
-// unsigned int Tmax(void)
-// {
-
-// }
-
-// unsigned int isNonNegative(unsigned int x)
-// {
-
-// }
+}
 
 // unsigned int isGreater(unsigned int x, unsigned int y)
 // {
 
 // }
 
-// unsigned int DivPwr2(unsigned int x, unsigned char n)
-// {
-
-// }
-
-unsigned int Abs(unsigned int x)
+unsigned int DivPwr2(unsigned int x, unsigned char n) //fix no /
 {
-    unsigned int signBit = x >> 31;
-    return (x + signBit) ^ signBit;
+    return x / (1 << n);
+}
+
+int Abs(int x)
+{
+    if (x < 0)
+        return -x;
+    return x;
 }
 
 // unsigned int addOk(unsigned int x, unsigned int y)

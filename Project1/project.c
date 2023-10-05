@@ -13,6 +13,18 @@ void print_bits(unsigned int x)
     }
 }
 
+void print_byte(unsigned int x)
+{
+    int i = 3;
+    int bit;
+    while (i >= 0)
+    {
+        bit = (x >> i) & 1;
+        printf("%d", bit);
+        i--;
+    }
+}
+
 int print_funcs(void)
 {
     int d;
@@ -53,11 +65,17 @@ int print_funcs(void)
         }
         else if (d == 4)
         {
-            
+            printf("x = ");
+            scanf(" %u", &x);
+            printf("n = ");
+            scanf(" %hhu", &n);
+            print_byte(getByte(x, n));
         }
         else if (d == 5)
         {
-            
+            printf("x = ");
+            scanf(" %u", &x);
+            print_bits(copyLSB(x));
         }
         else if (d == 6)
         {
@@ -70,20 +88,24 @@ int print_funcs(void)
         else if (d == 7)
         {
             printf("x = ");
-            scanf("%u", &x);
+            scanf(" %u", &x);
             printf("%u", bitCount(x));
         }
         else if (d == 8)
         {
-
+            printf("x = ");
+            scanf(" %u", &x);
+            printf("%u", Bang(x));
         }
         else if (d == 9)
         {
-
+            printf("x = ");
+            scanf(" %u", &x);
+            print_bits(LeastBitPos(x));
         }
         else if (d == 10)
         {
-
+            printf("%u", Tmax());
         }
         else if (d == 11)
         {
@@ -101,7 +123,7 @@ int print_funcs(void)
         {
             printf("x = ");
             scanf("%u", &x);
-            printf("%u", Abs(x));
+            printf("%d", Abs(x));
         }
         else if (d == 15)
         {
@@ -111,7 +133,7 @@ int print_funcs(void)
     }
     else if (d == 0)
     {
-        //exit prompt
+        printf("Goodbye\n");
         return (0);
     }
     else
@@ -128,5 +150,4 @@ int main()
     {
         d = print_funcs();
     }
-    return (0);
 }
