@@ -53,7 +53,7 @@ unsigned int bitCount(unsigned int x)
 
 unsigned int Bang(unsigned int x)
 {
-    return (~x & 1);
+    return (((x >> 31) | (~x + 1)) >> 31) ^ 1;
 }
 
 unsigned int LeastBitPos(unsigned int x)
