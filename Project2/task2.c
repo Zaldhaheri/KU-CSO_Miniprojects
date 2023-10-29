@@ -4,10 +4,8 @@
 int main() {
     float x, y;
     printf("Enter two decimal values (x and y): ");
-    if (scanf("%f %f", &x, &y) != 2) {
-        printf("Invalid input. Please enter valid float numbers.\n");
-        return 1;
-    }
+    scanf("%f %f", &x, &y);
+    float z = x * y;
 
     int sign_x = 1, sign_y = 1;
     if (x < 0) {
@@ -36,14 +34,14 @@ int main() {
     // Calculate the result
     float result = ldexpf(mantissa_result, exp_result) * sign_result;
 
-    // Round the result
+    // Round the result and print
     float rounded_result = roundf(result);
     printf("rounded result: %.5f\n", rounded_result);
     printf("result = %.5f\n", result);
-    printf("x * y = %.5f\n", x * y);
+    printf("x * y = %.5f\n", z);
 
     // Check if Z equals x * y
-    int Z = ((int) result == (int) (x * y)) ? 1 : 0;
+    int Z = ((int) result == (int) (z)) ? 1 : 0;
 
     printf("Z = %d\n", Z);
 
