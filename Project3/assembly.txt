@@ -1,0 +1,6 @@
+movl $4, %rdi
+movq %rdi, %rsi
+addq (%rdi), %rsi
+addl $50, (%rsi)
+imulw %rax, %rdi
+mulq $33, %rax
