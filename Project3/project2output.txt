@@ -1,0 +1,11 @@
+myFunction:
+	push %ebp
+	mov %ebp, %esp
+	sub %esp, $4
+	mov %eax, $0
+	mov %esi, $5
+	cmp %esi, $4
+endLoop:
+	mov %esp, %ebp
+	pop %ebp
+	ret

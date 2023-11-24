@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-void assemble_x86_64(char *instruction, uint64_t immediate, char *reg1, char *reg2, int mem) {
+char *assemble_x86_64(char *instruction, uint64_t immediate, char *reg1, char *reg2, int mem) {
     // Define opcodes for x86-64 instructions
     const uint8_t MOVQ = 0x48;
     const uint8_t ADDQ = 0x48;
@@ -30,7 +30,7 @@ void assemble_x86_64(char *instruction, uint64_t immediate, char *reg1, char *re
         opcode = MULQ;
     } else {
         printf("Unknown instruction: %s\n", instruction);
-        return;
+        return NULL;
     }
     
     // Define the register encodings
@@ -42,7 +42,7 @@ void assemble_x86_64(char *instruction, uint64_t immediate, char *reg1, char *re
         reg1_encoding = 0xC0;
     else {
         printf("Invalid register 1: %s", reg1);
-        return;
+        return NULL;
     }
     
     if (!strcmp(reg2, "rdi"))
@@ -51,13 +51,14 @@ void assemble_x86_64(char *instruction, uint64_t immediate, char *reg1, char *re
         reg2_encoding = 0xC3;
     else if (!strcmp(reg2, "rax"))
         reg2_encoding = 0xC0;
-    // else {
-    //     printf("Invalid register 2: %s", reg2);
-    //     return;
-    // }
     
     printf("Assembly Instruction: %s\n", instruction);
-    printf("Machine Code: %02X %02X %02X %08X\n", opcode, reg1_encoding, reg2_encoding, immediate);
+    printf("Machine Code: %02X %02X %02X %08lX\n", opcode, reg1_encoding, reg2_encoding, immediate);
+    char *assemblyString = malloc(100);
+    if (assemblyString != NULL) {
+        sprintf(assemblyString, "Assembly Instruction: %s\nMachine Code: %02X %02X %02X %08lX\n", instruction, opcode, reg1_encoding, reg2_encoding, immediate);
+    }
+    return assemblyString;
 }
 
 int main() {
@@ -70,10 +71,15 @@ int main() {
     int i;
     char *operationList[] = {"movl", "movq", "addq", "addl", "imulw", "mulq"};
     char *registerList[] = {"rdi", "rsi", "rax"};
-    char const* const fileName = "assembly.txt";
+    char const* const fileName = "project1input.txt";
     FILE* file = fopen(fileName, "r"); 
     if (!file){
         printf("\n Unable to open : %s ", fileName);
+        return -1;
+    }
+    FILE* outputFile = fopen("project1output.txt", "w");
+    if (!outputFile) {
+        printf("\n Unable to create output file");
         return -1;
     }
     
@@ -147,12 +153,10 @@ int main() {
             }
             i++;
         }
-        
-        // Call your assembly function here with the extracted values
-        //printf("Operation: %s, Reg1 = %s, Reg2 = %s, Immediate = %ld\n", operation, reg1, reg2, immediate);
-        assemble_x86_64(operation, immediate, reg1, reg2, 0);
+        char* assemblyOutput = assemble_x86_64(operation, immediate, reg1, reg2, 0);
+        fprintf(outputFile, "%s\n", assemblyOutput);
+        free(assemblyOutput);
     }
-    
     fclose(file);
     return 0;
 }

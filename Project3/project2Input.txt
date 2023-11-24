@@ -1,0 +1,7 @@
+long myFunction(long A[], long B[], int k, int N) {
+    long C;
+    for (int i = 5; i < 4; i++){
+        (C = (A[i] / B[i]) + C) << 3;
+    }
+    return C;
+}

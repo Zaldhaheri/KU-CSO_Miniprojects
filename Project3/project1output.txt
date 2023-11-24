@@ -1,0 +1,18 @@
+Assembly Instruction: addq
+Machine Code: 48 C7 C0 00000000
+
+Assembly Instruction: mulq
+Machine Code: 48 C7 00 00000064
+
+Assembly Instruction: movl
+Machine Code: 48 C0 00 00000004
+
+Assembly Instruction: imulw
+Machine Code: 66 C3 00 00000000
+
+Assembly Instruction: addl
+Machine Code: 83 C7 00 00000016
+
+Assembly Instruction: movq
+Machine Code: 48 C0 C3 00000000
+
